@@ -1,6 +1,9 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, router } from '@inertiajs/react';
+import { useState } from 'react';
 
-export default function Home({words}) {
+// to send information from the 
+
+export default function Home({words, wordId=null, details=null, errorMessage=null}) {
 
     // We need to load useForm(), which is part of the Inertia's React library (so not regular React nor Laravel)
 
@@ -29,6 +32,21 @@ export default function Home({words}) {
             onSuccess: () => reset('word')
         })
     }
+    //  we use clickedId to decide whether we open or close the panel
+    const [clickedId, setClickedId] = useState(null);
+
+    function handleMoreInfo(id) {
+        if (clickedId == id) return setClickedId(null); // we close the word
+
+        // otherwise, if the id clicked isn't the current clicked one, we set it to the new id
+        setClickedId(id)
+        
+        // we send a GET request to Laravel using the word's id:
+        router.get(`/words/show/${id}`, {}, {
+            preserveState:true,
+            preserveScroll:true
+        })
+    }
 
     return(
         <>
@@ -42,7 +60,63 @@ export default function Home({words}) {
                         // in Javascript, curly braces require an explicit return
                         // wiht parentheses, the return is implicit
                          words.map(word => (
-                            <p key={word.id}>{word.word}</p>
+                            <>
+                            <p key={word.id} onClick={() => handleMoreInfo(word.id)}>{word.word}</p>
+                            {/* additional info */}
+                            
+                            {clickedId === word.id && (
+                                <div>
+                                    {wordId === word.id && errorMessage && (
+                                        <p>{errorMessage}</p>
+                                    )}
+
+                                    {wordId === word.id && details && (
+                                        <>
+                                            {details.phonetics && (
+                                                <p>{details.phonetics}</p>
+                                            )}
+
+                                            {details.type1 && (
+                                                <p>{details.type1}</p>
+                                            )}
+
+                                            {details.def1 && (
+                                                <p>{details.def1}</p>
+                                            )}
+
+                                            {details.def2 && (
+                                                <p>{details.def2}</p>
+                                            )}
+
+                                            {details.type2 && (
+                                                <p>{details.type2}</p>
+                                            )}
+
+                                            {details.def3 && (
+                                                <p>{details.def3}</p>
+                                            )}
+
+                                            {details.def4 && (
+                                                <p>{details.def4}</p>
+                                            )}
+
+                                            {details.source && (
+                                                <p>
+                                                    <a
+                                                        href={details.source}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                    >
+                                                        Dictionary source
+                                                    </a>
+                                                </p>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
+                            )}
+
+                            </>
                          ))
                     )}
                 </div>
@@ -65,3 +139,4 @@ export default function Home({words}) {
         </>
     )
 }
+

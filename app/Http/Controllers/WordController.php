@@ -33,7 +33,7 @@ class WordController extends Controller
     // 4) We save the word or return an error if it's not part of the dictionary
     public function store(Request $request) {
         $request->validate([
-                'word' => 'required|string'
+                'word' => 'required|string|regex:/^[a-zA-Z]+$/' // issue: it cannot have numeric values or symbols [a-zA-Z]
             ]);
 
         // to use the submitted word in the fetched url, we first store it in a variable:
@@ -41,22 +41,79 @@ class WordController extends Controller
         $response = Http::get('https://freedictionaryapi.com/api/v1/entries/en/'.urlencode($wordText));
         // urlencode() helps safely encode the word for use in a URL, especially if it contains spaces or special characters
        
-        if ($response->successful() == true) {
-            // if it exists, we save the word:
+        if ($response->successful()) {
+            // before saving it, we need to check if it's not already in the database:
+            if (Word::where('word', $wordText)->exists()) return back()->withErrors(['word'=>'The word is already in the list.']);
+            // if it's in the dictionary and not in the database yet, we save the word:
             // manual approach:
             $word = new Word();
             $word->word = $wordText;
             $word->save();
             // or using the Model's mass assignment feature:
             // Word::create(['word' => $wordText]);
-
             return redirect() -> route('home');
         }
 
-        if ($response->notFound()) {
-            return back() -> withErrors(['word'=>'The word was not found in the dictionary.']);
-        }
+        if ($response->notFound()) return back() -> withErrors(['word'=>'The word was not found in the dictionary.']);
         
         return back() -> withErrors(['word'=>'The dictionary service is unavailable.']);
+    }
+
+    public function show($id) {
+        // write here the method to call the API and receive the information about the clicked word.
+        $word = Word::findOrFail($id);
+        $clickedWord = $word->word;
+        $response = Http::get('https://freedictionaryapi.com/api/v1/entries/en/'.urlencode($clickedWord));
+
+        $dataPage = [
+                'words' => Word::all(),
+                'wordId' => $word->id,
+                'details' => null, //c'est ici qu'on va ajouter les détails du json
+                'errorMessage' => null //si on a des erreurs, on va le mettre ici
+        ];  
+
+        if(!$response->successful()) {
+                $dataPage['errorMessage'] = "Error";
+                return Inertia::render('Home', $dataPage);
+        };
+        
+        // on récupère les données du JSON
+        // phonétique, définition1, def2, def3, type de mot 1, type de mot 2, source
+        $data = $response->json();
+        $entries = $data['entries'] ?? [];
+        // If there's a successful response but no entry:
+        if (empty($entries)) {
+            $dataPage['errorMessage'] = "No entry";
+            return Inertia::render('Home', $dataPage);
+        };
+        
+         $dataPage['details'] = [
+            'phonetics' =>
+                $entries[0]['pronunciations'][0]['text'] ?? '',
+
+            'type1' =>
+                $entries[0]['partOfSpeech'] ?? '',
+
+            'type2' =>
+                $entries[1]['partOfSpeech'] ?? '',
+
+            'def1' =>
+                $entries[0]['senses'][0]['definition'] ?? '',
+
+            'def2' =>
+                $entries[0]['senses'][1]['definition'] ?? '',
+
+            'def3' =>
+                $entries[1]['senses'][0]['definition'] ?? '',
+
+            'def4' =>
+                $entries[1]['senses'][1]['definition'] ?? '',
+
+            'source' =>
+                $data['source']['url'] ?? '',
+        ];
+
+        // we return the same page with the new info
+        return Inertia::render('Home', $dataPage);
     }
 }
