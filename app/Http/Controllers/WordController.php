@@ -68,25 +68,27 @@ class WordController extends Controller
         $dataPage = [
                 'words' => Word::all(),
                 'wordId' => $word->id,
-                'details' => null, //c'est ici qu'on va ajouter les détails du json
-                'errorMessage' => null //si on a des erreurs, on va le mettre ici
+                'details' => null, // c'est ici qu'on va ajouter les détails du json
+                'errorMessage' => null // si on a des erreurs, on va le mettre ici
         ];  
 
         if(!$response->successful()) {
-                $dataPage['errorMessage'] = "Error";
-                return Inertia::render('Home', $dataPage);
+            $dataPage['errorMessage'] = "Error";
+            return Inertia::render('Home', $dataPage);
         };
         
         // on récupère les données du JSON
         // phonétique, définition1, def2, def3, type de mot 1, type de mot 2, source
         $data = $response->json();
         $entries = $data['entries'] ?? [];
+
         // If there's a successful response but no entry:
         if (empty($entries)) {
             $dataPage['errorMessage'] = "No entry";
             return Inertia::render('Home', $dataPage);
         };
         
+        // otherwise, we store the info in the $dataPage > details variable
          $dataPage['details'] = [
             'phonetics' =>
                 $entries[0]['pronunciations'][0]['text'] ?? '',

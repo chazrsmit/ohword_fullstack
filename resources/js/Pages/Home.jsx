@@ -1,7 +1,6 @@
 import { Head, useForm, router } from '@inertiajs/react';
 import { useState } from 'react';
-
-// to send information from the 
+import Details from '../Components/Details';
 
 export default function Home({words, wordId=null, details=null, errorMessage=null}) {
 
@@ -42,6 +41,7 @@ export default function Home({words, wordId=null, details=null, errorMessage=nul
         setClickedId(id)
         
         // we send a GET request to Laravel using the word's id:
+        // router.get(url, data, options);
         router.get(`/words/show/${id}`, {}, {
             preserveState:true,
             preserveScroll:true
@@ -60,63 +60,66 @@ export default function Home({words, wordId=null, details=null, errorMessage=nul
                         // in Javascript, curly braces require an explicit return
                         // wiht parentheses, the return is implicit
                          words.map(word => (
-                            <>
-                            <p key={word.id} onClick={() => handleMoreInfo(word.id)}>{word.word}</p>
+                            <div className="col-12 col-lg-4">
+                            <p key={word.id} className={`li-word ${wordId === word.id && 'open'}`} onClick={() => handleMoreInfo(word.id)}>{word.word}</p>
+
                             {/* additional info */}
                             
                             {clickedId === word.id && (
+                                
                                 <div>
                                     {wordId === word.id && errorMessage && (
                                         <p>{errorMessage}</p>
                                     )}
 
                                     {wordId === word.id && details && (
-                                        <>
-                                            {details.phonetics && (
-                                                <p>{details.phonetics}</p>
-                                            )}
+                                        <Details details={details}/>
+                                //         <>
+                                //             {details.phonetics && (
+                                //                 <p>{details.phonetics}</p>
+                                //             )}
 
-                                            {details.type1 && (
-                                                <p>{details.type1}</p>
-                                            )}
+                                //             {details.type1 && (
+                                //                 <p>{details.type1}</p>
+                                //             )}
 
-                                            {details.def1 && (
-                                                <p>{details.def1}</p>
-                                            )}
+                                //             {details.def1 && (
+                                //                 <p>{details.def1}</p>
+                                //             )}
 
-                                            {details.def2 && (
-                                                <p>{details.def2}</p>
-                                            )}
+                                //             {details.def2 && (
+                                //                 <p>{details.def2}</p>
+                                //             )}
 
-                                            {details.type2 && (
-                                                <p>{details.type2}</p>
-                                            )}
+                                //             {details.type2 && (
+                                //                 <p>{details.type2}</p>
+                                //             )}
 
-                                            {details.def3 && (
-                                                <p>{details.def3}</p>
-                                            )}
+                                //             {details.def3 && (
+                                //                 <p>{details.def3}</p>
+                                //             )}
 
-                                            {details.def4 && (
-                                                <p>{details.def4}</p>
-                                            )}
+                                //             {details.def4 && (
+                                //                 <p>{details.def4}</p>
+                                //             )}
 
-                                            {details.source && (
-                                                <p>
-                                                    <a
-                                                        href={details.source}
-                                                        target="_blank"
-                                                        rel="noreferrer"
-                                                    >
-                                                        Dictionary source
-                                                    </a>
-                                                </p>
-                                            )}
-                                        </>
-                                    )}
+                                //             {details.source && (
+                                //                 <p>
+                                //                     <a
+                                //                         href={details.source}
+                                //                         target="_blank"
+                                //                         rel="noreferrer"
+                                //                     >
+                                //                         Dictionary source
+                                //                     </a>
+                                //                 </p>
+                                //             )}
+                                //         </>
+                                   )}
                                 </div>
                             )}
 
-                            </>
+                            </div>
                          ))
                     )}
                 </div>
