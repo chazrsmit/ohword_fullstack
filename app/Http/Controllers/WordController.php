@@ -40,10 +40,18 @@ class WordController extends Controller
         $wordText = $request->word; 
         $response = Http::get('https://freedictionaryapi.com/api/v1/entries/en/'.urlencode($wordText));
         // urlencode() helps safely encode the word for use in a URL, especially if it contains spaces or special characters
-       
+
         if ($response->successful()) {
+            $data = $response->json();
+
+            // if there are no entries, we don't save the word:
+            if (empty($data['entries'])) return back()->withErrors(['error' => 'The word does not exist.']);
+            // withErrors() si a Laraval method that allows to send errors to the browser/navigateur
+            // in the front-end, the Object returned by the useForm() method and its 'errors' property
+            // will allow us to access the error
+
             // before saving it, we need to check if it's not already in the database:
-            if (Word::where('word', $wordText)->exists()) return back()->withErrors(['word'=>'The word is already in the list.']);
+            if (Word::where('word', $wordText)->exists()) return back()->withErrors(['error' => 'The word is already in the list.']);
             // if it's in the dictionary and not in the database yet, we save the word:
             // manual approach:
             $word = new Word();
@@ -54,9 +62,9 @@ class WordController extends Controller
             return redirect() -> route('home');
         }
 
-        if ($response->notFound()) return back() -> withErrors(['word'=>'The word was not found in the dictionary.']);
+        if ($response->notFound()) return back() -> withErrors(['error '=> 'The word was not found in the dictionary.']);
         
-        return back() -> withErrors(['word'=>'The dictionary service is unavailable.']);
+        return back() -> withErrors(['error' => 'The dictionary service is unavailable.']);
     }
 
     public function show($id) {
@@ -73,21 +81,15 @@ class WordController extends Controller
         ];  
 
         if(!$response->successful()) {
-            $dataPage['errorMessage'] = "Error";
+            $dataPage['errorMessage'] = "The dictionary service is temporarily unavailable";
             return Inertia::render('Home', $dataPage);
         };
         
         // on récupère les données du JSON
         // phonétique, définition1, def2, def3, type de mot 1, type de mot 2, source
         $data = $response->json();
-        $entries = $data['entries'] ?? [];
+        $entries = $data['entries'];
 
-        // If there's a successful response but no entry:
-        if (empty($entries)) {
-            $dataPage['errorMessage'] = "No entry";
-            return Inertia::render('Home', $dataPage);
-        };
-        
         // otherwise, we store the info in the $dataPage > details variable
          $dataPage['details'] = [
             'phonetics' =>

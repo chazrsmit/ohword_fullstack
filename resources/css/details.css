@@ -1,0 +1,49 @@
+.div-infos {
+  font-family: "National Park", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: clamp(17px, 0.2vw + 0.9rem, 28px);
+}
+
+/* @media (min-width: 992px) {
+    .div-infos {
+        font-weight: 300;
+    }
+} */
+
+#phonetic {
+    /* color: rgb(94, 94, 94); */
+    color: grey;
+    font-weight: 500;
+    font-size: clamp(14px, 0.1vw + 0.8rem, 25px);
+    /* font-family: "arial"; */
+}
+
+.types {
+    font-size: clamp(14px, 0.1vw + 0.8rem, 25px);
+}
+
+.div-infos p b {
+    background: grey;
+    color: white;
+    border-radius: 20px;
+    /* font-family : "Noto Serif Simplified Chinese", serif; */
+    /* font-weight: 300; */
+}
+
+.div-defs p {
+    text-transform: lowercase;
+}
+
+#btn-remove {
+    border: none;
+    background: transparent;
+    font-size: clamp(14px, 0.1vw + 0.8rem, 25px);
+    font-family: "National Park", sans-serif;
+}
+
+#more {
+    text-decoration: none;
+    color: rgb(0, 85, 255);
+}

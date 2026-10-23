@@ -1,10 +1,17 @@
 import '../../css/details.css'
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function Details({ details }) {
 
     return (
                 <>
-            <div className="div-infos">
+            <motion.div
+                className="div-infos"
+                initial={{opacity:0}}
+                animate={{opacity:1}}
+                exit={{opacity:0}}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
                 {/* phonetic et types et remove */}
                 <div className="d-flex justify-content-between">
                     {/* bloc 1 */}
@@ -44,7 +51,7 @@ export default function Details({ details }) {
                 <div className="d-flex justify-content-between">
                     <a id="more" href={details.source} target="_blank" rel="noreferrer">→ source</a>
                 </div>
-            </div>
+            </motion.div>
         </>
     )
 }
