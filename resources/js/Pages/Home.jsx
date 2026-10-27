@@ -109,7 +109,7 @@ export default function Home({words, wordId=null, details=null }) {
                                     >
                                         <AnimatePresence >
                                         {wordId === word.id && details ? (
-                                            <Details  details={details}/>
+                                            <Details word={word} details={details}/>
                                         ) :
                                         (
                                             <p  id="loading-p">loading word...</p>
@@ -119,17 +119,21 @@ export default function Home({words, wordId=null, details=null }) {
                                 )}
                                 </AnimatePresence>
                             </div>
-                         ))
+                        ))
                     )}
                 </div>
 
                 {/* RIGHT COLUMN: add bouton */}
                 {/* <div className="add col-5 col-md-4 col-lg-3 d-flex flex-column align-items-end border"> */}
-                <div className={isMobile ? 'add-mobile' : 'add-desktop'}>
+                {isMobile ? 
+                <null></null>
+                :
+                (<div className={'add-desktop'}>
                     <form onSubmit={handleSubmit}>
                         <AddBtn data={data} errors={errors} setData={setData} processing={processing} />
                     </form>
                 </div>
+                )}
             </main>
             {isMobile &&
                 <FooterMobile />

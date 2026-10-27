@@ -2,8 +2,11 @@
     font-family: var(--font-p), sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: clamp(17px, 0.2vw + 0.9rem, 28px);
     color: var(--text-color);
+}
+
+.p-def {
+    font-size: clamp(17px, 0.2vw + 1rem, 28px);
 }
 
 /* @media (min-width: 992px) {
@@ -11,6 +14,11 @@
         font-weight: 300;
     }
 } */
+
+.div-defs {
+    position: relative;
+    isolation: isolate;
+}
 
 #phonetic {
     /* color: rgb(94, 94, 94); */
@@ -22,26 +30,54 @@
     font-size: clamp(17px, 0.2vw + 0.9rem, 28px);
 }
 
-.div-infos p b {
-    background: grey;
-    color: white;
-    border-radius: 20px;
+.div-infos .lilbtn {
+    background: var(--grey-color);
+    color: var(--font-color);
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;
     /* font-family : "Noto Serif Simplified Chinese", serif; */
     /* font-weight: 300; */
 }
 
-.div-defs p {
-    text-transform: lowercase;
+.div-infos .lilbtn p {
+    font-size: clamp(17px, 0.2vw + 1rem, 28px);
+}
+
+.div-remove {
+    background: var(--grey-color);
+    border-radius: 8px; 
+    padding-left: 1.4%;
+    padding-right: 1.4%;
 }
 
 #btn-remove {
     border: none;
     background: transparent;
-    font-size: clamp(14px, 0.1vw + 0.8rem, 25px);
+    font-size: clamp(14px, 0.1vw, 25px);
     font-family: var(--font-p), sans-serif;
 }
 
 #more {
     text-decoration: none;
     color: rgb(0, 85, 255);
+    font-size: clamp(14px, 0.1vw, 25px);
+    cursor: pointer;
+}
+
+.div-bg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index:-1;
+}
+
+.div-bg p {
+    font-size: 70px;
+    font-family: var(--font-bg);
+    color: white;
+    -webkit-text-stroke: 1px rgb(0, 85, 255);
+    paint-order: stroke fill;
 }

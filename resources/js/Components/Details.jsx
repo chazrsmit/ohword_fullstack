@@ -1,7 +1,7 @@
 import '../../css/details.css'
 import { motion, AnimatePresence } from 'motion/react';
 
-export default function Details({ details }) {
+export default function Details({ details, word }) {
 
     return (
                 <>
@@ -13,7 +13,7 @@ export default function Details({ details }) {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
             >
                 {/* phonetic et types et remove */}
-                <div className="d-flex justify-content-between">
+                <div className=" d-flex align-items-start justify-content-between">
                     {/* bloc 1 */}
                     <div className="d-flex">
                         {details.phonetics && 
@@ -34,18 +34,34 @@ export default function Details({ details }) {
                         </div>
                     </div>
                     {/* bloc 2 */}
-                    <div className="d-flex align-items-end">
-                        <button id="btn-remove">― remove</button>
+                    <div className="div-remove d-flex align-items-end">
+                        <button id="btn-remove">remove</button>
                     </div>
                 </div>
                 {/* définitions */}
                 <div className="div-defs">
-                    <p>
-                        <b className="pe-1 ps-1">1</b> {details.def1}
-                        {details.def2 && <>&nbsp;<b className="pe-1 ps-1">2</b> {details.def2}</>}
-                        {/* {details.def3 && <>&nbsp;<b className="pe-1 ps-1">3</b> {details.def3}</>}
-                        {details.def4 && <>&nbsp;<b className="pe-1 ps-1">4</b> {details.def4}</>} */}
-                    </p>
+                    <div className="d-flex gap-2">
+                        <div>
+                            <div className=" lilbtn pe-1 ps-1"><p>1</p></div>
+                        </div>
+                        <p className="p-def">
+                            {details.def1}
+                        </p>
+                    </div>
+                    {details.def2 &&
+                    <div className=" d-flex gap-2">
+                        <div>
+                            <div className=" lilbtn pe-1 ps-1"><p>2</p></div>
+                        </div>
+                        <p className="p-def">
+                            {details.def2}
+                        </p>
+                    </div>
+                    }
+                    {/* Background text */}
+                    <div className=" div-bg">
+                        <p>{word.word}</p>
+                    </div>
                 </div>
                 {/* source */}
                 <div className="d-flex justify-content-between">
