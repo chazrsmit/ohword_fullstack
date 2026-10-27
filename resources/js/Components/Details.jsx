@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export default function Details({ details, word }) {
 
+    const def1Capitalized = details.def1.charAt(0).toUpperCase().concat(details.def1.slice(1));
+    const def2Capitalized = details.def2? details.def2.charAt(0).toUpperCase().concat(details.def2.slice(1)) : null;
+    // NB: the function charAt only works with strings and not with arrays
+
     return (
                 <>
             <motion.div
@@ -45,7 +49,7 @@ export default function Details({ details, word }) {
                             <div className=" lilbtn pe-1 ps-1"><p>1</p></div>
                         </div>
                         <p className="p-def">
-                            {details.def1}
+                            {def1Capitalized}
                         </p>
                     </div>
                     {details.def2 &&
@@ -54,7 +58,7 @@ export default function Details({ details, word }) {
                             <div className=" lilbtn pe-1 ps-1"><p>2</p></div>
                         </div>
                         <p className="p-def">
-                            {details.def2}
+                            {def2Capitalized}
                         </p>
                     </div>
                     }

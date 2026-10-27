@@ -102,7 +102,7 @@ export default function Home({words, wordId=null, details=null }) {
                                 {clickedId === word.id && (
                                     <motion.div
                                         initial={{ height: 0, opacity: 0 }}
-                                        animate={{  height: wordId === word.id && details ? "auto" : 50, opacity: 1 }}
+                                        animate={{  height: wordId === word.id && details ? "auto" : 0, opacity: 1 }}
                                         exit={{  height: 0, opacity: 0 }}
                                         transition={{ duration: 0.5, ease: "easeInOut" }}
                                        
@@ -112,7 +112,8 @@ export default function Home({words, wordId=null, details=null }) {
                                             <Details word={word} details={details}/>
                                         ) :
                                         (
-                                            <p  id="loading-p">loading word...</p>
+                                            null
+                                            // <p  id="loading-p">loading word...</p>
                                         )}
                                         </AnimatePresence>
                                     </motion.div>

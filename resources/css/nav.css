@@ -2,6 +2,7 @@ nav {
     position: fixed;
     top: var(--padding-mobile)/2;
     right: var(--padding-mobile);
+    z-index: 100;
 }
 
 #nav-title {
