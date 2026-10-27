@@ -16,9 +16,9 @@ export default function Details({ details }) {
                 <div className="d-flex justify-content-between">
                     {/* bloc 1 */}
                     <div className="d-flex">
-                        {details.phonetic && 
+                        {details.phonetics && 
                             <div className="me-3">
-                                <p id="phonetic">{details.phonetic}</p>
+                                <p id="phonetic">{details.phonetics}</p>
                             </div>
                         }
                         <div className="types d-flex gap-1">

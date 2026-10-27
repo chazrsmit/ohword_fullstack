@@ -1,0 +1,13 @@
+nav {
+    position: fixed;
+    top: var(--padding-mobile)/2;
+    right: var(--padding-mobile);
+}
+
+#nav-title {
+    font-family: var(--font-word); 
+    font-size: 32px;
+    width: fit-content;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}

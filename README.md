@@ -1,27 +1,37 @@
 ## To do
-Handle uppercase input entries > already works no matter the input (if it's uppercase ou lowercase)
+> Handle uppercase input entries > already works no matter the input (if it's uppercase ou lowercase)
 
-Fetch the data from the dictionary API when I click on a word. > how to implement it? when i click on a word on the client-side, I need to send that info to the back-end via Laravel. Then, in the WordController or another Controller, I fetch the external API to get all the information about the clicked word.
+> Fetch the data from the dictionary API when I click on a word. > how to implement it? when i click on a word on the client-side, I need to send that info to the back-end via Laravel. Then, in the WordController or another Controller, I fetch the external API to get all the information about the clicked word.
 
-Make error messages disappear after 4 seconds (timeout).
+> Make error messages disappear after 4 seconds (timeout).
 
-In CSS, make sure that the displayed words are in text-transform: capitalize;
+> Put design tokens in CSS variables.
 
-Pput design tokens in CSS variables.
+> Add remove action in the WordController
 
-Add remove action in the WordController
+> Hide the show URLs when i click on a word 
 
-Hide the show URLs when i click on a word 
-
-Add a 'loading' sign for when a word is loading
-
-If there are no entries in the database for a word, don't add it > change in the controller
-
-Comment gérer correctement les erreurs? dans le controller, on mélange withErro avec un ErrorMessage présent dans $dataPage => what is the best then to deal with error messages in the front end?
-
+> Comment gérer correctement les erreurs? dans le controller, on mélange withErro avec un ErrorMessage présent dans $dataPage => what is the best then to deal with error messages in the front end?
 Le champ est vide ou contient des symboles >	$request->validate()	errors.word
 Le mot existe déjà dans la liste >	back()->withErrors()	errors.word
 Le dictionnaire ne reconnaît pas le mot lors de l'ajout >	back()->withErrors()	errors.word
 Impossible de récupérer la définition d'un mot existant	> errorMessage	errorMessage sous le mot
-
 Cela évite de mélanger les erreurs de formulaire avec celles qui concernent les définitions.
+
+>Ajouter Lenis Scroll
+
+> Revoir le design : déjà, avoir les mots alpahétiquement. pouvoir cliquer sur une ltettre (par exemple en mobile, avoir la liste des lettre sur le côté?). penser mobile-first, car je vais surtout l'utiliser en mobile.
+pour une version application (à développer plus tard), le faire avec React Native et express/node en back end. L'application sera disponible pour quiconque voudrait l'utiliser (d'abord en anglais). Utiliser une autre API (payante?) pour cette version-là. POUR PLUS TARD!!
+
+> en fait, stocker toutes les données sur le mot lorsqu'on l'ajoute, sinon ça prend trop de temps. par contre, si l'on change d'API, penser à incorporer un bouton "reload" ou "refresh" et ajouter une fonction dans le controller pour  update la source (l'API) et récupérer les nouvelles données pour les mots déjà existants !!!!
+
+> protéger la DB en créant un user qui a seulement comme autorisation de lire? mais comment je fais alors? je dois m'enregistrer ?
+
+> sur mobile : une vue single, mais possibilité de cliquer sur la lettre (ou appuyer) pour scroller au bon endroit
+
+// The central concept to remember is that useForm() manages the data being entered and submitted by the frontend.
+// The Laravel Word model manages the records stored in the database. Inertia connects those two stages.
+
+> Dans la table words: chaque row correspond à un mot, qui a plusieurs colonnes: word (le mot), phonetics, type1, type2, def1, def1bis, def2, def2bis, source.
+
+> style the error messages

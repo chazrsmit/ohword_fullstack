@@ -19,8 +19,8 @@ export default function AddBtn({ data, errors, setData, processing }) {
 
             {/* Affichage des erreurs */}
             <div className="errors">
-                {errors.error &&
-                    <p>→ {errors.error}</p>
+                {errors.word &&
+                    <p>→ {errors.word}</p>
                 }
             </div>
         </>

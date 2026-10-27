@@ -1,5 +1,5 @@
 #add-input {
-    font-family : "Noto Serif Simplified Chinese", serif;
+    font-family : var(--font-word), serif;
     /* font-size: clamp(32px, 3vw + 1rem, 62px); */
     font-size: clamp(40px, 3vw + 1rem, 62px);
     border: none;
@@ -31,7 +31,7 @@ textarea:focus::placeholder {
     border:none;
     background: none;
     outline: none;
-    font-family : "Noto Serif Simplified Chinese", serif;
+    font-family : var(--font-word), serif;
     /* font-size: clamp(50px, 3vw + 1rem, 62px); */
     line-height: 1;
     text-align:right;
@@ -45,6 +45,6 @@ textarea:focus::placeholder {
 /* erreurs */
 
 .errors p {
-    font-family : "Noto Serif Simplified Chinese", serif;
+    font-family : var(--font-word), serif;
     text-align: right;
 }

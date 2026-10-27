@@ -1,10 +1,25 @@
 import { Head, useForm, router } from '@inertiajs/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import Details from '../Components/Details';
 import AddBtn from '../Components/AddBtn';
-import { motion, AnimatePresence } from 'motion/react';
+import NavMobile from '../Components/NavMobile';
+import FooterMobile from '../Components/FooterMobile';
 
-export default function Home({words, wordId=null, details=null, errorMessage=null}) {
+export default function Home({words, wordId=null, details=null }) {
+
+    // Are we on mobile or not?
+    const [isMobile, setIsMobile] = useState(null);
+
+    useEffect(() => {
+        console.log(isMobile)
+        function resize() {
+            if (window.innerWidth < 768) return setIsMobile(true);
+            else return setIsMobile(false);
+        }
+        console.log(isMobile)
+        return window.addEventListener("resize", resize)
+    }, [])
 
     // We need to load useForm(), which is part of the Inertia's React library (so not regular React nor Laravel)
 
@@ -50,20 +65,29 @@ export default function Home({words, wordId=null, details=null, errorMessage=nul
         })
     }
 
+    // Sorting alphabetically
+    const sortedWords =
+        // we create a copy before sorting, leaving the original list intact
+        [...words].sort((a,b) => {
+            return a.word.localeCompare(b.word);
+        });
+
     return(
         <>
             <Head title="Oh word"/>
-
-            <main className="home d-flex">
+            {isMobile &&
+                <NavMobile />
+            }
+            <main className={`home d-flex ${isMobile? 'flex-column-reverse' : null}`}>
                 {/* LEFT COLUMN: words */}
-                <div className="col-12 col-lg-9 border">
+                <div className="d-flex flex-wrap col-12 col-md-9">
                     {words.length === 0 ? (
                         <p>NO WORDS YET</p>
                         ) : (
                         // REMINDER: in Javascript, curly braces require an explicit RETURN
                         // with parentheses, the return is implicit
-                         words.map(word => (
-                            <motion.div  className="div-word" key={word.id}>
+                        sortedWords.map(word => (
+                            <div className="div-word mb-2 col-12 col-md-4" key={word.id}>
                                 {/* THE WORD */}
                                 <div
                                     className={`li-word ${clickedId === word.id && 'open'}`}
@@ -73,42 +97,43 @@ export default function Home({words, wordId=null, details=null, errorMessage=nul
                                 </div>
 
                                 {/* ADDITIONAL INFO */}
-                                <AnimatePresence>
+                                <AnimatePresence >
 
                                 {clickedId === word.id && (
                                     <motion.div
                                         initial={{ height: 0, opacity: 0 }}
-                                        animate={{  height: 200, opacity: 1 }}
+                                        animate={{  height: wordId === word.id && details ? "auto" : 50, opacity: 1 }}
                                         exit={{  height: 0, opacity: 0 }}
                                         transition={{ duration: 0.5, ease: "easeInOut" }}
+                                       
                                     >
-                                        {wordId === word.id && errorMessage && (
-                                            <p>{errorMessage}</p>
-                                        )}
-                                        <AnimatePresence>
+                                        <AnimatePresence >
                                         {wordId === word.id && details ? (
-                                            <Details details={details}/>
+                                            <Details  details={details}/>
                                         ) :
                                         (
-                                            <p></p>
+                                            <p  id="loading-p">loading word...</p>
                                         )}
                                         </AnimatePresence>
                                     </motion.div>
                                 )}
                                 </AnimatePresence>
-                            </motion.div>
+                            </div>
                          ))
                     )}
                 </div>
 
                 {/* RIGHT COLUMN: add bouton */}
                 {/* <div className="add col-5 col-md-4 col-lg-3 d-flex flex-column align-items-end border"> */}
-                <div className="add">
+                <div className={isMobile ? 'add-mobile' : 'add-desktop'}>
                     <form onSubmit={handleSubmit}>
                         <AddBtn data={data} errors={errors} setData={setData} processing={processing} />
                     </form>
                 </div>
             </main>
+            {isMobile &&
+                <FooterMobile />
+            }
         </>
     )
 }

@@ -14,7 +14,14 @@ return new class extends Migration
         Schema::create('words', function (Blueprint $table) {
             $table->id();
             $table->string('word');
-            // $table->string('definition');
+            $table->string('phonetics')->nullable();
+            $table->string('type1')->nullable();
+            $table->string('type2')->nullable();
+            $table->text('def1')->nullable();
+            $table->text('def1bis')->nullable();
+            $table->text('def2')->nullable();
+            $table->text('def2bis')->nullable();
+            $table->string('source')->nullable();
             $table->timestamps();
         });
     }
