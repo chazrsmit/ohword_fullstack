@@ -6,12 +6,12 @@ export default function FooterMobile({ handleSubmit, data, errors, setData, proc
         <div className="wrapping-footer">
             <form onSubmit={handleSubmit}>
                 {/* error or success messages */}
-                <div className="mobile-messages">
+                <div className="mobile-div-messages">
                     {errors.word &&
-                        <p>→ {errors.word}</p>
+                        <p className="messages-mobile">→ {errors.word}</p>
                     }
                     {flash.success &&
-                    <p className="success-message-mobile">→ {flash.success}</p>
+                    <p className="messages-mobile">→ {flash.success}</p>
                     }
                 </div>
                 <div className="div-input-btn d-flex gap-2 justify-content-between">

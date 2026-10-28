@@ -27,11 +27,15 @@
     --padding-mobile: 5%;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
 main {
     padding-top: 16%;
     padding-bottom: 16%;
 }
+
 
 /* Add section */
 .add-mobile {

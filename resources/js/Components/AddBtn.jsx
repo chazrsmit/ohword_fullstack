@@ -25,12 +25,12 @@ export default function AddBtn({ data, errors, setData, processing, flash }) {
             </div>
         </div>
         {/* Affichage des erreurs ou flash messages */}
-        <div className="errors">
+        <div className="div-messages-desktop">
             {errors.word &&
-                <p className="error-message">→ {errors.word}</p>
+                <p className="messages-desktop">→ {errors.word}</p>
             }
             {flash.success &&
-                <p className="success-message">→ {flash.success}</p>
+                <p className="messages-desktop">→ {flash.success}</p>
             }
         </div>
         </>
