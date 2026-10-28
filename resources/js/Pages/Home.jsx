@@ -86,13 +86,24 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
             <main className={`home d-flex ${isMobile? 'flex-column-reverse' : null}`}>
                 {/* LEFT COLUMN: words */}
                 <div className="d-flex flex-wrap col-12 col-md-9">
-                    {words.length === 0 ? (
-                        <p>NO WORDS YET</p>
-                        ) : (
+                    <AnimatePresence initial={false} mode="popLayout">
                         // REMINDER: in Javascript, curly braces require an explicit RETURN
                         // with parentheses, the return is implicit
-                        sortedWords.map(word => (
-                            <div className="div-word mb-2 col-12 col-md-4" key={word.id}>
+                        {sortedWords.map(word => (
+                            <motion.div
+                                className="div-word mb-2 col-12 col-md-4"
+                                key={word.id}
+                                layout
+                                initial={{opacity:0, y:8}}
+                                animate={{opacity:1, y:0}}
+                                exit={{opacity:0, scale: 0.7, y:-8}}
+                                transition={{
+                                    layout: {duration: 0.3, ease: "easeInOut"},
+                                    opacity: {duration: 0.25},
+                                    scale: {duration: 0.25},
+                                    y: {duration: 0.25}
+                                }}
+                            >
                                 {/* THE WORD */}
                                 <div
                                     className={`li-word ${clickedId === word.id && 'open'}`}
@@ -103,14 +114,12 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
 
                                 {/* ADDITIONAL INFO */}
                                 <AnimatePresence >
-
                                 {clickedId === word.id && (
                                     <motion.div
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{  height: wordId === word.id && details ? "auto" : 0, opacity: 1 }}
                                         exit={{  height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.5, ease: "easeInOut" }}
-                                       
+                                        transition={{ duration: 0.5, ease: "easeInOut" }}                                       
                                     >
                                         <AnimatePresence >
                                         {wordId === word.id && details ? (
@@ -123,8 +132,18 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
                                     </motion.div>
                                 )}
                                 </AnimatePresence>
-                            </div>
-                        ))
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                    {/* Empty state */}
+                    {sortedWords.length === 0 && (
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            NO WORDS YET
+                        </motion.p>
                     )}
                 </div>
 
