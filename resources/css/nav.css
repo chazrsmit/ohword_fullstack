@@ -11,4 +11,5 @@ nav {
     width: fit-content;
     text-decoration: underline;
     text-decoration-thickness: 2px;
+    cursor: pointer;
 }
