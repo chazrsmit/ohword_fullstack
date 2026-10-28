@@ -4,9 +4,13 @@ export default function FooterMobile({ handleSubmit, data, errors, setData, proc
 
     return (
         <div className="wrapping-footer">
-
-
             <form onSubmit={handleSubmit}>
+                {/* error or success messages */}
+                <div className="mobile-messages">
+                    {errors.word &&
+                        <p>→ {errors.word}</p>
+                    }
+                </div>
                 <div className="div-input-btn d-flex gap-2 justify-content-between">
                     {/* left side - input area */}
                     <div className="div-mobile-input h-100">
@@ -20,21 +24,13 @@ export default function FooterMobile({ handleSubmit, data, errors, setData, proc
                         />
                     </div>
                     {/* Right side - button */}
-                    <div className="div-mobile-add ">
+                    <div className="div-mobile-add">
                         <button id="mobile-add" className="h-100 w-100" type="submit" disabled={processing}>
-                            {processing? '...': 'Add'}
+                            {processing? '...': '→'}
                         </button>
                     </div>
                 </div>
-                    {/* error or success messages */}
-                    <div className="mobile-messages">
-                        {errors.word &&
-                            <p>→ {errors.word}</p>
-                        }
-                    </div>
-                
             </form>
-
         </div>
     )
 

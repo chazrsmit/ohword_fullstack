@@ -12,13 +12,18 @@ export default function Home({words, wordId=null, details=null }) {
     const [isMobile, setIsMobile] = useState(null);
 
     useEffect(() => {
-        console.log(isMobile)
         function resize() {
             if (window.innerWidth < 768) return setIsMobile(true);
             else return setIsMobile(false);
         }
-        console.log(isMobile)
-        return window.addEventListener("resize", resize)
+        // We call resize() immediately when the component mounts
+        resize();
+
+        // In case of window resizing:
+        window.addEventListener("resize", resize)
+        
+        // Clean up, we remove the event listener 
+        return () => window.removeEventListener("resize", resize);
     }, [])
 
     // We need to load useForm(), which is part of the Inertia's React library (so not regular React nor Laravel)
