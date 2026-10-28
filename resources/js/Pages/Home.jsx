@@ -80,6 +80,24 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
             return a.word.localeCompare(b.word);
         });
 
+    // We make error and flash messages disappear after 4 seconds:
+    const [showMessage, setShowMessage] = useState(true);
+
+    useEffect(() => {
+        // If there are no messages:
+        if (!flash.success && !errors.word) return;
+
+        setShowMessage(true);
+
+        const timer = setTimeout(() => {
+            setShowMessage(false);
+        }, 3000)
+        // In JavaScript, people often use lambda to refer to an anonymous function or an arrow function,
+        // particularly when it's passed as an argument.
+
+        return () => clearTimeout(timer); // it gives React a function to execute later, not now.
+    }, [flash.success, errors.word])
+
     return(
         <>
             <Head title="Oh word"/>
@@ -157,7 +175,7 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
                 :
                 (<div className={'add-desktop'}>
                     <form onSubmit={handleSubmit}>
-                        <AddBtn data={data} errors={errors} flash={flash} setData={setData} processing={processing} />
+                        <AddBtn data={data} errors={errors} showMessage={showMessage} flash={flash} setData={setData} processing={processing} />
                     </form>
                 </div>
                 )}
@@ -165,7 +183,7 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
 
 
             {isMobile &&
-                <FooterMobile flash={flash} handleSubmit={handleSubmit} data={data} errors={errors} setData={setData} processing={processing} />
+                <FooterMobile flash={flash} showMessage={showMessage} handleSubmit={handleSubmit} data={data} errors={errors} setData={setData} processing={processing} />
             }
         </>
     )

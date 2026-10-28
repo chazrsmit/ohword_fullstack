@@ -51,7 +51,7 @@ class WordController extends Controller
             //// If there are no entries in the dictionary, we don't save the word:
             if (empty($entries)) return back()->withErrors(['word' => 'The word does not exist.']);
             // NB: 'withErrors()' is a Laraval method that allows to send errors to the browser/navigateur.
-            // In the front-end, the Object returned by the useForm() method and its 'errors' property will allow us to access the error.
+            // In the front-end, the Object returned by the useForm() and its 'errors' property will allow us to access the error.
 
             //// Before saving the word, we need to check if it's not already in the database:
             if (Word::where('word', $wordText)->exists()) return back()->withErrors(['word' => 'The word is already in the list.']);

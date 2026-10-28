@@ -1,18 +1,39 @@
 import '../../css/footer.css'
+import {AnimatePresence, motion} from 'motion/react'
 
-export default function FooterMobile({ handleSubmit, data, errors, setData, processing, flash }) {
+export default function FooterMobile({ handleSubmit, data, errors, setData, processing, flash, showMessage }) {
 
     return (
         <div className="wrapping-footer">
             <form onSubmit={handleSubmit}>
                 {/* error or success messages */}
                 <div className="mobile-div-messages">
-                    {errors.word &&
-                        <p className="messages-mobile">→ {errors.word}</p>
+                    <AnimatePresence>
+                    {showMessage && errors.word &&
+                        <motion.p
+                            key="word-error"
+                            className="messages-mobile"
+                            initial={{opacity:0}}
+                            animate={{opacity:1}}
+                            exit={{opacity:0}}
+                            transition={{duration:0.25, ease:"easeInOut"}}
+                        >
+                            → {errors.word}
+                        </motion.p>
                     }
-                    {flash.success &&
-                    <p className="messages-mobile">→ {flash.success}</p>
+                    {showMessage && flash.success &&
+                    <motion.p
+                        key="word-success"
+                        className="messages-mobile"
+                        initial={{opacity:0}}
+                        animate={{opacity:1}}
+                        exit={{opacity:0}}
+                        transition={{duration:0.25, ease:"easeInOut"}}
+                    >
+                        → {flash.success}
+                    </motion.p>
                     }
+                    </AnimatePresence>
                 </div>
                 <div className="div-input-btn d-flex gap-2 justify-content-between">
                     {/* left side - input area */}

@@ -47,7 +47,7 @@
 /* Messages */
 
 .mobile-div-messages {
-    background: white;
+    background: var(--grey-color);
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
     padding-left: 2%;
