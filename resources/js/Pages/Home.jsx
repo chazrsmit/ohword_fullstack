@@ -7,7 +7,7 @@ import NavMobile from '../Components/NavMobile';
 import FooterMobile from '../Components/FooterMobile';
 import LenisScroll from '../Components/LenisScroll';
 
-export default function Home({words, wordId=null, details=null, flash={} }) {
+export default function Home({ words, wordId=null, details=null, flash={}, auth={} }) {
 
     // Are we on mobile or not?
     const [isMobile, setIsMobile] = useState(null);
@@ -50,7 +50,7 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
     function handleSubmit(e) {
         e.preventDefault();
         // here, we send the request to Laravel:
-        post('/words', {
+        post('/', {
             preserveState:true,
             preserveScroll:true,
             onSuccess: () => reset('word')
@@ -143,7 +143,7 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
                                     >
                                         <AnimatePresence >
                                         {wordId === word.id && details ? (
-                                            <Details word={word} details={details} onDeleteSuccess={() => setClickedId(null)}/>
+                                            <Details word={word} details={details} onDeleteSuccess={() => setClickedId(null)} canDelete={Boolean(auth.user)} />
                                         ) :
                                         (
                                             null
@@ -170,20 +170,32 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
 
                 {/* RIGHT COLUMN: add bouton */}
                 {/* <div className="add col-5 col-md-4 col-lg-3 d-flex flex-column align-items-end border"> */}
-                {isMobile ? 
-                null
-                :
+                {!isMobile &&
                 (<div className={'add-desktop'}>
                     <form onSubmit={handleSubmit}>
-                        <AddBtn data={data} errors={errors} showMessage={showMessage} flash={flash} setData={setData} processing={processing} />
+                        <AddBtn auth={auth} data={data} errors={errors} showMessage={showMessage} flash={flash} setData={setData} processing={processing} />
                     </form>
                 </div>
                 )}
+
+                {/* Logging out */}
+                {auth.user &&
+                <div className="btn-logout">
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            router.post('/logout');
+                        }}
+                    >
+                        <button type="submit">Log out</button>
+                    </form>
+                </div>
+                }
             </main>
 
 
             {isMobile &&
-                <FooterMobile flash={flash} showMessage={showMessage} handleSubmit={handleSubmit} data={data} errors={errors} setData={setData} processing={processing} />
+                <FooterMobile auth={auth} flash={flash} showMessage={showMessage} handleSubmit={handleSubmit} data={data} errors={errors} setData={setData} processing={processing} />
             }
         </>
     )

@@ -58,11 +58,15 @@
     line-height: 1.1;
     text-align: right;
     padding: 0;
-    cursor: pointer;
 }
 
-#btn-add:hover {
+.btn-on:hover {
     color: rgb(0, 85, 255);
+    cursor:pointer;
+}
+
+.btn-disabled:hover {
+    cursor: not-allowed;
 }
 
 #btn-add:focus {

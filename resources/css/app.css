@@ -121,3 +121,17 @@ main {
     font-size: clamp(17px, 0.2vw + 0.9rem, 28px);
     color: var(--text-color);
 }
+
+/* Log out */
+
+.btn-logout {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.btn-logout form button {
+    font-family: var(--font-word);
+    border: none;
+    background: none;
+}

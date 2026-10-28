@@ -2,7 +2,7 @@ import '../../css/details.css'
 import { motion, AnimatePresence } from 'motion/react';
 import { router } from '@inertiajs/react'
 
-export default function Details({ details, word, onDeleteSuccess }) {
+export default function Details({ details, word, onDeleteSuccess, canDelete }) {
 
     const def1Capitalized = details.def1.charAt(0).toUpperCase().concat(details.def1.slice(1));
     const def2Capitalized = details.def2? details.def2.charAt(0).toUpperCase().concat(details.def2.slice(1)) : null;
@@ -48,7 +48,9 @@ export default function Details({ details, word, onDeleteSuccess }) {
                     </div>
                     {/* bloc 2 */}
                     <div className="div-remove d-flex align-items-end">
+                        {canDelete && 
                         <button id="btn-remove" onClick={() => handleDelete(word.id)}>remove</button>
+                        }
                     </div>
                 </div>
 

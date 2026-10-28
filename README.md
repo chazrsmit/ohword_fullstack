@@ -35,3 +35,16 @@ pour une version application (à développer plus tard), le faire avec React Nat
 > Dans la table words: chaque row correspond à un mot, qui a plusieurs colonnes: word (le mot), phonetics, type1, type2, def1, def1bis, def2, def2bis, source.
 
 > style the error messages
+
+Implement authentication and create your own account.
+Disable public registration.
+Protect store and destroy with auth middleware.
+Hide Add and Delete controls from visitors
+Change the word-detail interaction so the URL stays at /.
+Test the published app in a logged-out browser to verify that viewing works but adding and deleting do not.
+
+Your dictionary remains public so people can explore it as a portfolio project.
+You have a private login page.
+Only you can log in because there is no public registration.
+Only authenticated users can add or delete words.
+Your existing React, Inertia, Laravel and database setup stays in place.

@@ -1,7 +1,7 @@
 import '../../css/footer.css'
 import {AnimatePresence, motion} from 'motion/react'
 
-export default function FooterMobile({ handleSubmit, data, errors, setData, processing, flash, showMessage }) {
+export default function FooterMobile({ handleSubmit, data, errors, setData, processing, flash, showMessage, auth }) {
 
     return (
         <div className="wrapping-footer">
@@ -42,14 +42,14 @@ export default function FooterMobile({ handleSubmit, data, errors, setData, proc
                             id="mobile-input"
                             className="w-100 h-100"
                             type="text"
-                            placeholder="Add word..."
+                            placeholder={auth.user ? 'Type word...' : 'You cannot add words :('}
                             value={data.word}
                             onChange={(e) => setData('word', e.target.value)}    
                         />
                     </div>
                     {/* Right side - button */}
                     <div className="div-mobile-add">
-                        <button id="mobile-add" className="h-100 w-100" type="submit" disabled={processing}>
+                        <button id="mobile-add" className="h-100 w-100" type="submit" disabled={!auth.user || processing}>
                             {processing? '...': '→'}
                         </button>
                     </div>
