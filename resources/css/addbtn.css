@@ -1,50 +1,87 @@
-#add-input {
-    font-family : var(--font-word), serif;
-    /* font-size: clamp(32px, 3vw + 1rem, 62px); */
-    font-size: clamp(40px, 3vw + 1rem, 62px);
-    border: none;
+
+/* Input and button container */
+
+.add-desktop-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
     width: 100%;
+    gap: 0.5rem;
+}
+
+/* Input wrapper */
+
+.desktop-input {
+    width: 15vw;
+    min-width: 150px;
+}
+
+/* Input field */
+
+#add-desktop {
+    width: 100%;
+    font-family: var(--font-word), serif;
+    font-size: clamp(40px, 3vw, 52px);
     text-align: right;
-    resize: none;
-    height: 9dvh;
+    border: none;
     outline: none;
-    line-height: 1.3;
-    /* z-index: 0; */
     background: transparent;
-    overflow-x: auto;
-    white-space: nowrap;
+    color: var(--text-color);
+    line-height: 1.1;
+    padding: 0;
+    box-shadow: none;
 }
 
-@media (min-width: 992px) {
-    #add-input {
-        line-height: 1.1 !important;
-    }
+#add-desktop:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
-textarea:focus::placeholder {
-  color: transparent;
+#add-desktop::placeholder {
+    font-family: var(--font-word), serif;
+    color: var(--text-color);
+    opacity: 1;
+    text-align: right;
 }
 
-/* Bouton */
+/* Add button */
 
 #btn-add {
-    border:none;
-    background: none;
+    flex-shrink: 0;
+    border: none;
     outline: none;
-    font-family : var(--font-word), serif;
-    /* font-size: clamp(50px, 3vw + 1rem, 62px); */
-    line-height: 1;
-    text-align:right;
-    font-size: clamp(40px, 3vw + 1rem, 62px);
+    box-shadow: none;
+    background: transparent;
+    font-family: var(--font-word), serif;
+    font-size: clamp(40px, 3vw, 52px);
+    line-height: 1.1;
+    text-align: right;
+    padding: 0;
+    cursor: pointer;
 }
 
 #btn-add:hover {
     color: rgb(0, 85, 255);
 }
 
-/* erreurs */
+#btn-add:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Error messages */
 
 .errors p {
-    font-family : var(--font-word), serif;
+    font-family: var(--font-word), serif;
     text-align: right;
+}
+
+/* Desktop adjustments */
+
+@media (min-width: 768px) {
+    #add-desktop,
+    #btn-add {
+        line-height: 1.1;
+    }
 }

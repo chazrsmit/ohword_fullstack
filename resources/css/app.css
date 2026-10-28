@@ -103,7 +103,6 @@ main {
     color: var(--blue-color);
     cursor: pointer;
     text-transform: lowercase;
-    transition: all 0.5s;
 }   
 
 /* Loading... */
