@@ -41,18 +41,6 @@ main {
     display:none;
 }
 
-
-@media (min-width: 768px) {
-    main {
-    padding-top: 0;
-    }
-    .add-desktop {
-        position: fixed;
-        top: 0;
-        right: 0.3%;
-    }
-}
-
 /* Words */
 .div-word {
     padding-left: var(--padding-mobile);
@@ -76,10 +64,26 @@ main {
     color: var(--text-color);
 }
 
+/* ON TABLETS AND COMPUTERS */
 @media (min-width:768px) {
+    #root, html {
+        scrollbar-width: none;
+    }
+    main {
+        padding-top: 0;
+    }
+    .add-desktop {
+        position: fixed;
+        top: 0;
+        right: 0.3%;
+    }
+    .div-word {
+        padding-left:1%;
+        padding-right:1%;
+    }
     .li-word{
         word-break: break-word; 
-        font-size: clamp(40px, 3vw + 1rem, 62px);
+        font-size: clamp(40px, 3vw + 1rem, 52px);
     }
 
     .li-word p {
