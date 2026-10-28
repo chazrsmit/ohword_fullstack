@@ -8,7 +8,7 @@ export default function Details({ details, word }) {
     // NB: the function charAt only works with strings and not with arrays
 
     return (
-                <>
+            <>
             <motion.div
                 className="div-infos"
                 initial={{opacity:0}}
@@ -42,20 +42,21 @@ export default function Details({ details, word }) {
                         <button id="btn-remove">remove</button>
                     </div>
                 </div>
+
                 {/* définitions */}
-                <div className="div-defs">
-                    <div className="d-flex gap-2">
-                        <div>
-                            <div className=" lilbtn pe-1 ps-1"><p>1</p></div>
+                <div className=" div-defs">
+                    <div className="d-flex gap-3">
+                        <div className="d-flex align-items-start">
+                            <div className="lilbtn"><p>1</p></div>
                         </div>
                         <p className="p-def">
                             {def1Capitalized}
                         </p>
                     </div>
                     {details.def2 &&
-                    <div className=" d-flex gap-2">
-                        <div>
-                            <div className=" lilbtn pe-1 ps-1"><p>2</p></div>
+                    <div className=" d-flex gap-3">
+                        <div className="">
+                            <div className="lilbtn"><p>2</p></div>
                         </div>
                         <p className="p-def">
                             {def2Capitalized}
@@ -67,8 +68,9 @@ export default function Details({ details, word }) {
                         <p>{word.word}</p>
                     </div>
                 </div>
+
                 {/* source */}
-                <div className="d-flex justify-content-between">
+                <div className=" d-flex justify-content-between">
                     <a id="more" href={details.source} target="_blank" rel="noreferrer">→ source</a>
                 </div>
             </motion.div>

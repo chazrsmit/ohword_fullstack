@@ -24,7 +24,7 @@
     --font-p: "National Park";
     --font-bg: "SUSE Mono";
     /* Paddings */
-    --padding-mobile: 4%;
+    --padding-mobile: 5%;
 }
 
 
@@ -43,6 +43,9 @@ main {
 
 
 @media (min-width: 768px) {
+    main {
+    padding-top: 0;
+    }
     .add-desktop {
         position: fixed;
         top: 0;
@@ -55,6 +58,8 @@ main {
     padding-left: var(--padding-mobile);
     padding-right: var(--padding-mobile);
     overflow: hidden;
+    position:relative;
+    isolation: isolate;
 }
 
 .li-word {
@@ -90,11 +95,12 @@ main {
 
 
 .li-word p:hover, .li-word.open p {
-    font-style: italic;
+    /* font-style: italic; */
     color: var(--blue-color);
     cursor: pointer;
     text-transform: lowercase;
-}
+    transition: all 0.5s;
+}   
 
 /* Loading... */
 

@@ -3,12 +3,11 @@
     font-optical-sizing: auto;
     font-style: normal;
     color: var(--text-color);
-    isolation: isolate;
     position:relative;
 }
 
 .p-def {
-    font-size: clamp(17px, 0.2vw + 1rem, 28px);
+    font-size: clamp(17px, 0.2vw + 1.1rem, 30px);
 }
 
 /* @media (min-width: 992px) {
@@ -35,8 +34,8 @@
     background: var(--grey-color);
     color: var(--font-color);
     border-radius: 50%;
-    height: 25px;
-    width: 25px;
+    height: 28px;
+    width: 28px;
     display: flex;
     justify-content: center;
     /* font-family : "Noto Serif Simplified Chinese", serif; */
@@ -44,7 +43,7 @@
 }
 
 .div-infos .lilbtn p {
-    font-size: clamp(17px, 0.2vw + 1rem, 28px);
+    font-size: clamp(17px, 0.2vw + 1.1rem, 30px);
 }
 
 .div-remove {
@@ -66,12 +65,13 @@
     color: rgb(0, 85, 255);
     font-size: clamp(14px, 0.1vw, 25px);
     cursor: pointer;
+    line-height: 1;
 }
 
 .div-bg {
     position: absolute;
     top: 50%;
-    transform: translateY(-60%);
+    transform: translateY(-90%);
     z-index:-1;
 }
 

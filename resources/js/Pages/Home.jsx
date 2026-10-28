@@ -113,7 +113,6 @@ export default function Home({words, wordId=null, details=null }) {
                                         ) :
                                         (
                                             null
-                                            // <p  id="loading-p">loading word...</p>
                                         )}
                                         </AnimatePresence>
                                     </motion.div>
@@ -136,8 +135,9 @@ export default function Home({words, wordId=null, details=null }) {
                 </div>
                 )}
             </main>
+
             {isMobile &&
-                <FooterMobile />
+                <FooterMobile handleSubmit={handleSubmit} data={data} errors={errors} setData={setData} processing={processing} />
             }
         </>
     )

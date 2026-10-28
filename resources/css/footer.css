@@ -1,0 +1,22 @@
+.wrapping-footer {
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+    background: white;
+    padding-left: var(--padding-mobile);
+    padding-right: var(--padding-mobile);
+    padding-bottom: 3%;
+}
+
+.div-input-btn {
+    height: 8vh;
+}
+
+.div-mobile-input {
+    width: 85%;
+}
+
+.div-mobile-add {
+    width: 15%;
+}
