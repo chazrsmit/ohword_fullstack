@@ -6,7 +6,7 @@ import AddBtn from '../Components/AddBtn';
 import NavMobile from '../Components/NavMobile';
 import FooterMobile from '../Components/FooterMobile';
 
-export default function Home({words, wordId=null, details=null }) {
+export default function Home({words, wordId=null, details=null, flash={} }) {
 
     // Are we on mobile or not?
     const [isMobile, setIsMobile] = useState(null);
@@ -114,7 +114,7 @@ export default function Home({words, wordId=null, details=null }) {
                                     >
                                         <AnimatePresence >
                                         {wordId === word.id && details ? (
-                                            <Details word={word} details={details}/>
+                                            <Details word={word} details={details} onDeleteSuccess={() => setClickedId(null)}/>
                                         ) :
                                         (
                                             null
@@ -135,14 +135,14 @@ export default function Home({words, wordId=null, details=null }) {
                 :
                 (<div className={'add-desktop'}>
                     <form onSubmit={handleSubmit}>
-                        <AddBtn data={data} errors={errors} setData={setData} processing={processing} />
+                        <AddBtn data={data} errors={errors} flash={flash} setData={setData} processing={processing} />
                     </form>
                 </div>
                 )}
             </main>
 
             {isMobile &&
-                <FooterMobile handleSubmit={handleSubmit} data={data} errors={errors} setData={setData} processing={processing} />
+                <FooterMobile flash={flash} handleSubmit={handleSubmit} data={data} errors={errors} setData={setData} processing={processing} />
             }
         </>
     )

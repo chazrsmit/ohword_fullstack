@@ -114,4 +114,13 @@ class WordController extends Controller
 
     //////////////////////////////////////////////////////////////
     //// METHOD to delete the word from the database
+
+    public function destroy($id) {
+
+        $word = Word::findOrFail($id);
+        $word->delete();
+
+        return redirect() -> route('home') -> with('success', 'Word successfully deleted.');
+
+    }
 }

@@ -30,6 +30,7 @@
 
 main {
     padding-top: 16%;
+    padding-bottom: 16%;
 }
 
 /* Add section */
@@ -71,6 +72,7 @@ main {
     }
     main {
         padding-top: 0;
+        padding-bottom: 0;
     }
     .add-desktop {
         position: fixed;

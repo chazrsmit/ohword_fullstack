@@ -1,11 +1,20 @@
 import '../../css/details.css'
 import { motion, AnimatePresence } from 'motion/react';
+import { router } from '@inertiajs/react'
 
-export default function Details({ details, word }) {
+export default function Details({ details, word, onDeleteSuccess }) {
 
     const def1Capitalized = details.def1.charAt(0).toUpperCase().concat(details.def1.slice(1));
     const def2Capitalized = details.def2? details.def2.charAt(0).toUpperCase().concat(details.def2.slice(1)) : null;
     // NB: the function charAt only works with strings and not with arrays
+
+    function handleDelete(id) {
+        router.delete(`/words/delete/${id}`, {
+            preserveScroll: true,
+            preserveState: true,
+            onSuccess: () => onDeleteSuccess()
+        })
+    };
 
     return (
             <>
@@ -39,7 +48,7 @@ export default function Details({ details, word }) {
                     </div>
                     {/* bloc 2 */}
                     <div className="div-remove d-flex align-items-end">
-                        <button id="btn-remove">remove</button>
+                        <button id="btn-remove" onClick={() => handleDelete(word.id)}>remove</button>
                     </div>
                 </div>
 

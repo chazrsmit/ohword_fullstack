@@ -1,6 +1,6 @@
 import '../../css/addbtn.css';
 
-export default function AddBtn({ data, errors, setData, processing }) {
+export default function AddBtn({ data, errors, setData, processing, flash }) {
 
     return(
         <>
@@ -24,12 +24,15 @@ export default function AddBtn({ data, errors, setData, processing }) {
                 </button>
             </div>
         </div>
-            {/* Affichage des erreurs */}
-            <div className="errors">
-                {errors.word &&
-                    <p>→ {errors.word}</p>
-                }
-            </div>
+        {/* Affichage des erreurs ou flash messages */}
+        <div className="errors">
+            {errors.word &&
+                <p className="error-message">→ {errors.word}</p>
+            }
+            {flash.success &&
+                <p className="success-message">→ {flash.success}</p>
+            }
+        </div>
         </>
     )
 }

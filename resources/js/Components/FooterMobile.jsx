@@ -1,6 +1,6 @@
 import '../../css/footer.css'
 
-export default function FooterMobile({ handleSubmit, data, errors, setData, processing }) {
+export default function FooterMobile({ handleSubmit, data, errors, setData, processing, flash }) {
 
     return (
         <div className="wrapping-footer">
@@ -9,6 +9,9 @@ export default function FooterMobile({ handleSubmit, data, errors, setData, proc
                 <div className="mobile-messages">
                     {errors.word &&
                         <p>→ {errors.word}</p>
+                    }
+                    {flash.success &&
+                    <p className="success-message-mobile">→ {flash.success}</p>
                     }
                 </div>
                 <div className="div-input-btn d-flex gap-2 justify-content-between">

@@ -11,3 +11,4 @@ Route::get('/', [WordController::class, 'index']) -> name('home'); //registers a
 // Route::post() defines a route that accepts POST requests.
 Route::post('/words', [WordController::class, 'store']) -> name('words.store'); 
 Route::get('/words/show/{id}', [WordController::class, 'show']) -> name('words.show'); //here, the brower requests information
+Route::delete('/words/delete/{id}', [WordController::class, 'destroy']) -> name('words.destroy');
