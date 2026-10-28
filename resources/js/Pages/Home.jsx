@@ -50,6 +50,8 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
         e.preventDefault();
         // here, we send the request to Laravel:
         post('/words', {
+            preserveState:true,
+            preserveScroll:true,
             onSuccess: () => reset('word')
         })
     }
@@ -90,20 +92,17 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
                         // REMINDER: in Javascript, curly braces require an explicit RETURN
                         // with parentheses, the return is implicit
                         {sortedWords.map(word => (
-                            <motion.div
-                                className="div-word mb-2 col-12 col-md-4"
-                                key={word.id}
-                                layout
-                                initial={{opacity:0, y:8}}
-                                animate={{opacity:1, y:0}}
-                                exit={{opacity:0, scale: 0.7, y:-8}}
-                                transition={{
-                                    layout: {duration: 0.3, ease: "easeInOut"},
-                                    opacity: {duration: 0.25},
-                                    scale: {duration: 0.25},
-                                    y: {duration: 0.25}
-                                }}
-                            >
+                            <div className="div-word mb-2 col-12 col-md-4" key={word.id}>
+                                <motion.div
+                                    className="word-motion"
+                                    initial={{ opacity: 0, y: 8 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -8 }}
+                                    transition={{
+                                        opacity: { duration: 0.5 },
+                                        y: { duration: 0.5 }
+                                    }}
+                                >
                                 {/* THE WORD */}
                                 <div
                                     className={`li-word ${clickedId === word.id && 'open'}`}
@@ -132,7 +131,8 @@ export default function Home({words, wordId=null, details=null, flash={} }) {
                                     </motion.div>
                                 )}
                                 </AnimatePresence>
-                            </motion.div>
+                                </motion.div>
+                            </div>
                         ))}
                     </AnimatePresence>
                     {/* Empty state */}

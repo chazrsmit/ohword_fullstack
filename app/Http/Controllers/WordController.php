@@ -74,7 +74,7 @@ class WordController extends Controller
             $word->source = $data['source']['url'] ?? '';
             $word->save();
 
-            return redirect() -> route('home');
+            return redirect() -> route('home') -> with('success', 'Word successfully added.'); 
         }
         
         //// If the word wasn't found:
