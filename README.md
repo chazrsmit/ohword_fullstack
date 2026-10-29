@@ -53,7 +53,7 @@ The application is deployed to Render using a multi-stage Docker build. Vite com
 
 The production database is hosted on Aiven MySQL. Database credentials and other environment-specific configuration are supplied through environment variables and deployment secrets rather than being committed to the repository.
 
-## UI/UX design
+## UI/UX Design
 
 The design of Oh Word is intentionally minimal, prioritising readability, clarity, and ease of use across devices.
 
@@ -63,6 +63,8 @@ The design of Oh Word is intentionally minimal, prioritising readability, clarit
 - **Clear and intuitive actions:** An obvious delete button allows authenticated users to remove words from their collection without ambiguity.
 - **Dictionary-inspired layout:** The interface takes inspiration from the familiar format of a traditional dictionary, preserving the feeling of browsing a collection of words while making entries easier to read, navigate, and explore digitally.
 - **Simplicity and accessibility:** Every element serves a clear purpose. The interface is designed to be straightforward and usable in different contexts, without unnecessary visual clutter. Strong text-to-background contrast is prioritised in line with the Web Content Accessibility Guidelines (WCAG), supporting readability and making content easier to distinguish, with 3 contrast ratios of 20.40:1 (black text), 7.03:1 (blue text) and 14.45:1 (buttons) - tested on coolors.co.
+- **Smooth transitions:** Subtle animations and smooth transitions implemented with Framer Motion to create fluid interactions and provide visual feedback.
+- **User feedback:** Clear error messages help users understand why a word cannot be added, while success messages confirm when a word has been added or deleted.
 
 The goal is to create a lightweight, accessible, and intuitive experience: a personal dictionary that feels familiar, works across devices, and can be used with minimal effort.
 
