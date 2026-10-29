@@ -46,6 +46,14 @@ export default function Home({ words, wordId=null, details=null, flash={}, auth=
     //const setData = form.setData;
     //const post = form.post; etc...
 
+    // We make error and flash messages disappear after 4 seconds:
+    const [showMessage, setShowMessage] = useState(true);
+    // Counter:
+    const [messageTrigger, setMessageTrigger] = useState(0);
+
+    //  we use clickedId to decide whether we open or close the panel of the word
+    const [clickedId, setClickedId] = useState(null);
+
     // we need to create a function for when we submit the form
     function handleSubmit(e) {
         e.preventDefault();
@@ -53,11 +61,15 @@ export default function Home({ words, wordId=null, details=null, flash={}, auth=
         post('/', {
             preserveState:true,
             preserveScroll:true,
-            onSuccess: () => reset('word')
-        })
+            onSuccess: () => {
+                reset('word')
+                setMessageTrigger(prev => prev + 1);
+            },
+            onError: () => {
+                setMessageTrigger(prev => prev + 1);
+            }
+            })
     }
-    //  we use clickedId to decide whether we open or close the panel
-    const [clickedId, setClickedId] = useState(null);
 
     async function handleMoreInfo(id) {
         if (clickedId == id) return setClickedId(null); // we close the word
@@ -90,8 +102,6 @@ export default function Home({ words, wordId=null, details=null, flash={}, auth=
             return a.word.localeCompare(b.word);
         });
 
-    // We make error and flash messages disappear after 4 seconds:
-    const [showMessage, setShowMessage] = useState(true);
 
     useEffect(() => {
         // If there are no messages:
@@ -106,7 +116,7 @@ export default function Home({ words, wordId=null, details=null, flash={}, auth=
         // particularly when it's passed as an argument.
 
         return () => clearTimeout(timer); // it gives React a function to execute later, not now.
-    }, [flash.success, errors.word])
+    }, [flash.success, errors.word, messageTrigger])
 
     return(
         <>
@@ -189,7 +199,7 @@ export default function Home({ words, wordId=null, details=null, flash={}, auth=
                 )}
 
                 {/* Logging out */}
-                {auth.user &&
+                {auth.user && !isMobile &&
                 <div className="btn-logout">
                     <form
                         onSubmit={(e) => {
