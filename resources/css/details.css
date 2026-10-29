@@ -8,7 +8,7 @@
 }
 
 .p-def {
-    font-size: clamp(22px, 0.2vw + 1.1rem, 30px);
+    font-size: clamp(22px, 0.2vw + 1rem, 30px);
 }
 
 /* @media (min-width: 992px) {
@@ -44,7 +44,7 @@
 }
 
 .div-infos .lilbtn p {
-    font-size: clamp(22px, 0.2vw + 1.1rem, 30px);
+    font-size: clamp(22px, 0.2vw + 1rem, 30px);
 }
 
 .div-remove {
@@ -61,6 +61,15 @@
     font-size: clamp(14px, 0.1vw, 25px);
     font-family: var(--font-p), sans-serif;
     color: var(--text-color);
+}
+
+@media (min-width: 992px) {
+    .div-remove {
+        transition: all 0.25s;
+    }
+    .div-remove:hover {
+        
+    }
 }
 
 #more {
@@ -98,5 +107,13 @@
 
     .div-bg p {
         font-size: 60px;
+    }
+
+    .p-def {
+        font-size: clamp(20px, 0.2vw + 1rem, 30px);
+    }
+
+    .div-infos .lilbtn p {
+        font-size: clamp(20px, 0.2vw + 1rem, 30px);
     }
 }
