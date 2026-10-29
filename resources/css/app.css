@@ -33,7 +33,7 @@ html {
 
 main {
     padding-top: 16%;
-    padding-bottom: 10%;
+    padding-bottom: 16%;
 }
 
 
@@ -96,21 +96,26 @@ main {
     .li-word p {
         line-height: 1;
     }
+
+    .li-word p:hover, .li-word.open p {
+    /* font-style: italic; */
+    color: var(--blue-color);
+    cursor: pointer;
+    text-transform: lowercase;
+    }      
+}
+
+.li-word.open p {
+    color: var(--blue-color);
+    text-transform: lowercase;
 }
 
 .li-word p {
     width: 100%;
     line-height: 1;
     color: var(--text-color);
+    transition: color 0.5s ease-in-out;
 }
-
-
-.li-word p:hover, .li-word.open p {
-    /* font-style: italic; */
-    color: var(--blue-color);
-    cursor: pointer;
-    text-transform: lowercase;
-}   
 
 /* Loading... */
 
