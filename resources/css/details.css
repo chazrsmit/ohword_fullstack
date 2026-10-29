@@ -8,7 +8,7 @@
 }
 
 .p-def {
-    font-size: clamp(17px, 0.2vw + 1.1rem, 30px);
+    font-size: clamp(24px, 0.2vw + 1.1rem, 30px);
 }
 
 /* @media (min-width: 992px) {
@@ -35,8 +35,8 @@
     background: var(--grey-color);
     color: var(--font-color);
     border-radius: 50%;
-    height: 28px;
-    width: 28px;
+    height: 36px;
+    width: 36   px;
     display: flex;
     justify-content: center;
     /* font-family : "Noto Serif Simplified Chinese", serif; */
@@ -44,7 +44,7 @@
 }
 
 .div-infos .lilbtn p {
-    font-size: clamp(17px, 0.2vw + 1.1rem, 30px);
+    font-size: clamp(24px, 0.2vw + 1.1rem, 30px);
 }
 
 .div-remove {
