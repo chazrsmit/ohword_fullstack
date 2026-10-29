@@ -5,12 +5,12 @@
     width: 100%;
     padding-left: var(--padding-mobile);
     padding-right: var(--padding-mobile);
-    padding-bottom: 1%;
+    padding-bottom: 0.5%;
+    background:white;
 }
 
 .div-input-btn {
     height: 8vh;
-    background:white;
 }
 
 .div-mobile-input {

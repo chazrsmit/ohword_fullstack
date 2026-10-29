@@ -4,7 +4,7 @@ import {AnimatePresence, motion} from 'motion/react'
 export default function FooterMobile({ handleSubmit, data, errors, setData, processing, flash, showMessage, auth }) {
 
     return (
-        <div className="wrapping-footer">
+        <div className="wrapping-footer ">
             <form onSubmit={handleSubmit}>
                 {/* error or success messages */}
                 <div className="mobile-div-messages">
