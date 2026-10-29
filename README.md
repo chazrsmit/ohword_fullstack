@@ -30,14 +30,14 @@ Oh Word uses Laravel for the backend and React for the frontend, connected throu
 
 Dictionary requests are handled server-side by Laravel. The application stores selected API data in the database rather than requesting it every time a word is opened.
 
-The current implementation stores the word, phonetics, up to two parts of speech, up to four definitions, and the source URL. It selects data from the first two dictionary entries returned by the API.
+The current implementation stores the word, phonetics, up to two parts of speech, up to two definitions, and the source URL. It selects data from the first two dictionary entries returned by the API.
 
 ## Technology Stack
 
 - **Backend:** PHP 8.3+, Laravel 13, Eloquent ORM
 - **Frontend:** React 19, Inertia.js, Vite
 - **Styling and interaction:** Custom CSS, Bootstrap 5, (Framer) Motion
-- **Database:** SQLite or MySQL, depending on the environment
+- **Database:** MySQL
 - **External API:** [Free Dictionary API](https://freedictionaryapi.com/)
 - **Deployment:** Docker, Render, Aiven MySQL
 
