@@ -32,7 +32,7 @@ class WordController extends Controller
     // 4) We save the word and its details or return an error if it's not part of the dictionary.
     public function store(Request $request) {
         $request->validate([
-                'word' => 'required|string|regex:/^[a-zA-Z ]+$/' // The column word, found in the 'Words' table.
+                'word' => 'required|string|regex:/^[a-zA-Z -]+$/' // The column word, found in the 'Words' table.
             ]);
 
         //// To use the submitted word in the fetched url, we first store it in a variable:
