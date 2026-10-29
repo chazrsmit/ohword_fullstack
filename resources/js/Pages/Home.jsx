@@ -59,18 +59,28 @@ export default function Home({ words, wordId=null, details=null, flash={}, auth=
     //  we use clickedId to decide whether we open or close the panel
     const [clickedId, setClickedId] = useState(null);
 
-    function handleMoreInfo(id) {
+    async function handleMoreInfo(id) {
         if (clickedId == id) return setClickedId(null); // we close the word
 
         // otherwise, if the id clicked isn't the current clicked one, we set it to the new id
         setClickedId(id)
         
+        // Option 1:
         // we send a GET request to Laravel using the word's id:
         // router.get(url, data, options);
         router.get(`/words/show/${id}`, {}, {
             preserveState:true,
             preserveScroll:true
         })
+
+        // Option 2:
+        // We use a fetch() to retrieve the json data from the backend, returned by the show() function
+        // const response = await fetch(`/words/show/$id`);
+        // if (!response.ok) {
+        //     throw new Error('Error loading data.');
+        // }
+        // const data = await response.json();
+        // Then, we use useState to store details and wordId.
     }
 
     // Sorting alphabetically

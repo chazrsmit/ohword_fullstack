@@ -104,11 +104,18 @@ class WordController extends Controller
         // Let's not forget to also include 'words' as a variable
         $words = Word::all();
 
-        return Inertia::render('Home', [
+        // return Inertia::render('Home', [
+        //     'wordId' => $wordId,
+        //     'details' => $details,
+        //     'words' => $words
+        //     ]);
+
+        // Some changes: instead of returning an entire Inertia page, Laravel returns a JSON response containing the requested data
+        return response()->json([
             'wordId' => $wordId,
             'details' => $details,
             'words' => $words
-            ]);
+        ]);
     }
     //////////////////////////////////////////////////////////////
 
