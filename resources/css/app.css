@@ -114,7 +114,6 @@ main {
     width: 100%;
     line-height: 1;
     color: var(--text-color);
-    transition: color 0.5s ease-in-out;
 }
 
 /* Loading... */
