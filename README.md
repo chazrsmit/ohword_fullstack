@@ -53,16 +53,16 @@ The application is deployed to Render using a multi-stage Docker build. Vite com
 
 The production database is hosted on Aiven MySQL. Database credentials and other environment-specific configuration are supplied through environment variables and deployment secrets rather than being committed to the repository.
 
-## UI/UX Design Principles
+## UI/UX design
 
 The design of Oh Word is intentionally minimal, prioritising readability, clarity, and ease of use across devices.
 
 - **Minimal colour palette:** A classic black-and-white palette keeps the interface simple and distraction-free. Royal blue provides a visual accent to indicate interactive states, highlighting selected words and desktop hover interactions.
-- **Tactile mobile interactions:** Buttons feature a subtle, squishy feel, providing immediate visual feedback when pressed. Clear prompts invite users to enter a word and submit it.
+- **Tactile mobile interactions:** Buttons feature a subtle, inviting squishy feel. Clear prompts invite users to enter a word and submit it.
 - **Mobile-first readability:** Generous font sizes and clear typography make words and definitions comfortable to read on smaller screens.
 - **Clear and intuitive actions:** An obvious delete button allows authenticated users to remove words from their collection without ambiguity.
 - **Dictionary-inspired layout:** The interface takes inspiration from the familiar format of a traditional dictionary, preserving the feeling of browsing a collection of words while making entries easier to read, navigate, and explore digitally.
-- **Simplicity and accessibility:** Every element serves a clear purpose. The interface is designed to be straightforward and usable in different contexts, without unnecessary visual clutter. Strong text-to-background contrast is prioritised in line with the Web Content Accessibility Guidelines (WCAG), supporting readability and making content easier to distinguish.
+- **Simplicity and accessibility:** Every element serves a clear purpose. The interface is designed to be straightforward and usable in different contexts, without unnecessary visual clutter. Strong text-to-background contrast is prioritised in line with the Web Content Accessibility Guidelines (WCAG), supporting readability and making content easier to distinguish, with 3 contrast ratios of 20.40:1 (black text), 7.03:1 (blue text) and 14.45:1 (buttons) - tested on coolors.co.
 
 The goal is to create a lightweight, accessible, and intuitive experience: a personal dictionary that feels familiar, works across devices, and can be used with minimal effort.
 
