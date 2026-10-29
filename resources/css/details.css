@@ -60,6 +60,7 @@
     background: transparent;
     font-size: clamp(14px, 0.1vw, 25px);
     font-family: var(--font-p), sans-serif;
+    color: var(--text-color);
 }
 
 #more {

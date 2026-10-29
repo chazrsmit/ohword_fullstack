@@ -2,7 +2,7 @@
 
 Oh Word is a personal English dictionary: a simple, visual space to collect words, explore their definitions, and revisit them later.
 
-The dictionary is publicly accessible, while adding and deleting words is restricted to authenticated users. There is no public registration flow.
+The dictionary is publicly accessible, while adding and deleting words is restricted to authenticated users (aka me). There is no public registration flow.
 
 **Live demo:** [ohword.onrender.com](https://ohword.onrender.com/)
 
