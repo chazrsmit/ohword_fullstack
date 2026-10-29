@@ -26,9 +26,9 @@ export default function Details({ details, word, onDeleteSuccess, canDelete }) {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
             >
                 {/* phonetic et types et remove */}
-                <div className=" d-flex align-items-start justify-content-between">
+                <div className=" d-flex align-items-start justify-content-between gap-1">
                     {/* bloc 1 */}
-                    <div className="d-flex">
+                    <div className="d-flex gap-1">
                         {details.phonetics && 
                             <div className="me-3">
                                 <p id="phonetic">{details.phonetics}</p>
