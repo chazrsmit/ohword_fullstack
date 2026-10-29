@@ -34,6 +34,8 @@ RUN apt-get update && apt-get install -y \
     && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
 
+RUN usermod -a -G 1000 www-data
+
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
