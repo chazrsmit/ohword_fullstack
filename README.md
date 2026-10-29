@@ -48,3 +48,24 @@ You have a private login page.
 Only you can log in because there is no public registration.
 Only authenticated users can add or delete words.
 Your existing React, Inertia, Laravel and database setup stays in place.
+
+DEPLOYMENT ON RENDER (FREE)
+1. Prepare your GitHub repository
+
+Check your environment secrets and make sure the project builds.
+
+2. Set up the production database
+
+Use a separate MySQL-compatible database, without exposing your local database.
+
+3. Prepare the Laravel app for Render
+
+Configure Docker so Render can install PHP dependencies and build your React assets.
+
+4. Deploy and configure environment variables
+
+Set production secrets, run migrations, and get your public URL.
+
+5. Transfer your words and test authentication
+
+Create your production login and verify visitors can't add or delete words.
