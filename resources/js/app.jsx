@@ -1,5 +1,6 @@
 import '../css/app.css';
 import 'bootstrap';
+import Lenis from './Components/Lenis';
 
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
@@ -18,6 +19,10 @@ createInertiaApp({
 
     setup({ el, App, props }) {
         //createRoot() mounts React inside the HTML element provided by Inertia
-        createRoot(el).render(<App {...props} />);
+        createRoot(el).render(
+        <Lenis>
+        <App {...props} />
+        </Lenis>
+    );
     },
 });
